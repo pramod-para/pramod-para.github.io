@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            if (pageYOffset >= sectionTop - 100) {
+            if (window.pageYOffset >= sectionTop - 100) {
                 current = section.getAttribute('id');
             }
         });
@@ -44,35 +44,4 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.book-card, .blog-post').forEach(el => {
         observer.observe(el);
     });
-
-    // Add CSS for fade-in animation
-    const style = document.createElement('style');
-    style.textContent = `
-        .book-card, .blog-post {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        
-        .book-card.fade-in, .blog-post.fade-in {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .nav-links a.active {
-            color: var(--secondary-color);
-            position: relative;
-        }
-
-        .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--secondary-color);
-        }
-    `;
-    document.head.appendChild(style);
 });
